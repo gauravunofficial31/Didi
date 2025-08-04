@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Didi! 🎉</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&family=Butcherman&family=Griffy&display=swap" rel="stylesheet">
+    <style>
+         body {
+            background-color: #fff0f5; /* Light pink background */
+            overflow-x: hidden;
+        }
+         @keyframes float-balloon {
+            0%, 100% {
+                transform: translateY(0) rotate(-5deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+        
+        @keyframes float-balloon2 {
+            0%, 100% {
+                transform: translateY(0) rotate(3deg);
+            }
+            50% {
+                transform: translateY(-15px) rotate(-3deg);
+            }
+        }
+        
+        /* Confetti strips animation */
+        @keyframes float-strip {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+            }
+        }
+        
+        /* Balloon styles */
+        .balloon {
+            position: absolute;
+            animation: float-balloon 4s ease-in-out infinite;
+            z-index: 1;
+            filter: drop-shadow(0 3px 5px rgba(0,0,0,0.2));
+        }
+        
+        .balloon2 {
+            position: absolute;
+            animation: float-balloon2 5s ease-in-out infinite;
+            z-index: 1;
+            filter: drop-shadow(0 3px 5px rgba(0,0,0,0.2));
+        }
+        
+        /* Confetti strip styles */
+        .confetti-strip {
+            position: absolute;
+            width: 15px;
+            height: 40px;
+            opacity: 0.7;
+            animation: float-strip linear infinite;
+            z-index: 1;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @keyframes sparkle {
+            0% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+        }
+
+        @keyframes confetti {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        @keyframes balloon-float {
+            0% {
+                transform: translateY(0px) rotate(-2deg);
+            }
+            50% {
+                transform: translateY(-30px) rotate(2deg);
+            }
+            100% {
+                transform: translateY(0px) rotate(-2deg);
+            }
+        }
+
+        @keyframes cake-glow {
+            0% {
+                filter: drop-shadow(0 0 5px #ff69b4);
+            }
+            50% {
+                filter: drop-shadow(0 0 20px #ff69b4) drop-shadow(0 0 30px #ff1493);
+            }
+            100% {
+                filter: drop-shadow(0 0 5px #ff69b4);
+            }
+        }
+
+        .animate-bounce-custom {
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .animate-sparkle {
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        .animate-confetti {
+            animation: confetti 3s linear infinite;
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .animate-balloon-float {
+            animation: balloon-float 4s ease-in-out infinite;
+        }
+
+        .animate-cake-glow {
+            animation: cake-glow 2s ease-in-out infinite;
+        }
+
+        .card-flip {
+    perspective: 1000px;
+    width: 90%;
+    max-width: 400px; /* Added max-width */
+    height: 250px; /* Reduced from 320px */
+    position: relative;
+    margin: 0 auto;
+}
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    transition: transform 0.6s ease, background 0.6s ease;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+        
+        .card-front {
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            color: white;
+            transform: rotateY(0deg);
+        }
+        
+        .card-back {
+            background: white;
+            color: #ff1493;
+            transform: rotateY(180deg);
+        }
+        
+        .card-flip:hover .card-front {
+            transform: rotateY(180deg);
+            background: white;
+            color: #ff1493;
+        }
+        
+        .card-flip:hover .card-back {
+            transform: rotateY(360deg);
+            background: linear-gradient(135deg, #ffcee6, #ffcee6);
+            color: rgb(100, 100, 100);
+        }
+        
+        /* Content styling */
+        .card-content {
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .card-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .gif-placeholder {
+            background: linear-gradient(45deg, #ff69b4, #ff1493, #ffd700, #ff69b4);
+            background-size: 400% 400%;
+            animation: gradient-shift 3s ease infinite;
+            border: 3px dashed #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        @keyframes gradient-shift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Dark Magical Theme Styles */
+        .hp-title { font-family: 'Griffy', cursive; }
+        .hp-dark { font-family: 'Butcherman', cursive; }
+        .hp-spooky { font-family: 'Nosifer', cursive; }
+        
+        /* Rain Animation */
+        .rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .rain-drop {
+            position: absolute;
+            width: 2px;
+            height: 20px;
+            background: linear-gradient(to bottom, transparent, rgba(173, 216, 230, 0.6), transparent);
+            animation: fall linear infinite;
+        }
+        
+        @keyframes fall {
+            0% { transform: translateY(-100vh); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+        
+        .house-glow { transition: all 0.4s ease; }
+        .house-glow:hover { transform: scale(1.08); box-shadow: 0 0 40px rgba(139, 69, 19, 0.8); }
+        .celebration { animation: celebration 1s ease-in-out; }
+        
+        .gryffindor { 
+            background: linear-gradient(135deg, #4a0000, #8b0000, #2d1810);
+            border: 3px solid #d4af37;
+        }
+        .hufflepuff { 
+            background: linear-gradient(135deg, #2d2000, #4a4000, #1a1a00);
+            border: 3px solid #ffcc00;
+        }
+        .ravenclaw { 
+            background: linear-gradient(135deg, #0a0a2e, #1a1a4a, #000033);
+            border: 3px solid #4169e1;
+        }
+        .slytherin { 
+            background: linear-gradient(135deg, #0d2818, #1a472a, #001a00);
+            border: 3px solid #40826d;
+        }
+        
+        .dark-bg { 
+            background: linear-gradient(45deg, #000000, #0f0f0f, #1a1a1a, #0a0a0a);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .thunder-flash {
+            animation: lightning 0.2s ease-in-out;
+        }
+        
+        @keyframes lightning {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; background-color: rgba(255, 255, 255, 0.1); }
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 10px rgba(139, 69, 19, 0.8), 0 0 20px rgba(139, 69, 19, 0.6), 0 0 30px rgba(139, 69, 19, 0.4);
+        }
+        
+        .dark-card {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(20, 20, 20, 0.8));
+            border: 2px solid #8b4513;
+            backdrop-filter: blur(10px);
+        }
+        
+        .parchment {
+            background: linear-gradient(135deg, #2c1810, #3d2317, #1a0f0a);
+            border: 3px solid #8b6914;
+        }
+       #darkMagicPage {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.98);
+            z-index: 1000;
+            overflow-y: auto;
+            display: none;
+            padding-top: 80px; /* Add space for header */
+        }
+
+        #darkMagicPage .container {
+            min-height: calc(100% - 80px);
+            padding-bottom: 40px;
+        }
+    </style>
+</head>
+<body class="font-serif text-gray-700 overflow-x-hidden">
+    <!-- Audio element for background music -->
+    <audio id="backgroundMusic" loop>
+        <source src="happy-birthday-368842.mp3" type="audio/mpeg">
+        <!-- Replace YOUR_MUSIC_FILE.mp3 with your actual music file -->
+        <!-- You can use multiple sources for browser compatibility -->
+        <source src="YOUR_MUSIC_FILE.ogg" type="audio/ogg">
+        <source src="YOUR_MUSIC_FILE.wav" type="audio/wav">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-lg px-5 py-4 z-50 text-center shadow-lg">
+        <a href="#hero" class="text-pink-custom font-bold mx-4 hover:text-purple-custom transition-colors duration-300">Home</a>
+        <a href="#gallery" class="text-pink-custom font-bold mx-4 hover:text-purple-custom transition-colors duration-300">Photos</a>
+        <a href="#message" class="text-pink-custom font-bold mx-4 hover:text-purple-custom transition-colors duration-300">Message</a>
+        <a href="#facts" class="text-pink-custom font-bold mx-4 hover:text-purple-custom transition-colors duration-300">Fun Facts</a>
+        <a href="#memories" class="text-pink-custom font-bold mx-4 hover:text-purple-custom transition-colors duration-300">Memories</a>
+        <a href="#card" class="text-pink-custom font-bold mx-4 hover:text-purple-custom transition-colors duration-300">Card</a>
+        <button onclick="showDarkMagic()" class="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-6 py-2 rounded-full font-bold hover:scale-105 transition-transform duration-300 shadow-lg ml-4">
+            🎃 GIFT!! 🎃
+        </button>
+    </nav>
+
+   <section id="hero" class="min-h-[80vh] flex items-center justify-center text-center relative overflow-hidden px-5 pt-20 pb-10 bg-gradient-to-br from-pink-100 to-purple-100">
+        <!-- Background Balloons -->
+        <div class="balloon text-4xl" style="left: 10%; top: 15%; animation-delay: 0s;">🎈</div>
+        <div class="balloon2 text-3xl" style="right: 15%; top: 20%; animation-delay: 0.5s; color: #ff69b4;">🎈</div>
+        <div class="balloon text-3xl" style="left: 20%; top: 30%; animation-delay: 1s; color: #ff1493;">🎈</div>
+        <div class="balloon2 text-4xl" style="right: 10%; top: 40%; animation-delay: 1.5s;">🎈</div>
+        <div class="balloon text-3xl" style="left: 15%; top: 60%; animation-delay: 2s; color: #ff69b4;">🎈</div>
+        <div class="balloon2 text-4xl" style="right: 20%; top: 70%; animation-delay: 2.5s;">🎈</div>
+        
+        <!-- Confetti Strips -->
+        <div class="confetti-strip bg-pink-400" style="left: 5%; animation-duration: 8s; animation-delay: 0s;"></div>
+        <div class="confetti-strip bg-purple-400" style="left: 15%; animation-duration: 10s; animation-delay: 1s;"></div>
+        <div class="confetti-strip bg-yellow-300" style="left: 25%; animation-duration: 7s; animation-delay: 0.5s;"></div>
+        <div class="confetti-strip bg-blue-300" style="left: 35%; animation-duration: 9s; animation-delay: 1.5s;"></div>
+        <div class="confetti-strip bg-green-300" style="left: 45%; animation-duration: 8s; animation-delay: 0.2s;"></div>
+        <div class="confetti-strip bg-red-300" style="left: 55%; animation-duration: 11s; animation-delay: 0.7s;"></div>
+        <div class="confetti-strip bg-pink-300" style="left: 65%; animation-duration: 7s; animation-delay: 1.2s;"></div>
+        <div class="confetti-strip bg-purple-300" style="left: 75%; animation-duration: 9s; animation-delay: 0.4s;"></div>
+        <div class="confetti-strip bg-yellow-400" style="left: 85%; animation-duration: 8s; animation-delay: 1.8s;"></div>
+        <div class="confetti-strip bg-blue-400" style="left: 95%; animation-duration: 10s; animation-delay: 0.9s;"></div>
+        
+        <!-- Main Content -->
+        <div class="hero-content z-10 max-w-4xl">
+            <h1 class="text-5xl md:text-7xl text-pink-600 font-bold mb-4 animate-bounce-custom drop-shadow-lg">
+                Happy Birthday Didi! 🎉
+            </h1>
+            <p class="text-xl md:text-2xl text-purple-600 mb-6 font-medium">
+                Today 5th August 2025 is all about celebrating Your 23rd Birthday!!
+            </p>
+            
+            <img src="Photo1.jpg" alt="Celebration" class="w-70 h-50 rounded-2xl mx-auto mb-4 object-cover shadow-lg">
+            
+            <div class="inline-block bg-gradient-to-r from-pink-500 to-purple-500 text-white px-6 py-3 rounded-full text-lg font-bold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 cursor-pointer">
+                🎊 Let's Celebrate! 🎊
+            </div>
+        </div>
+        
+        <!-- Sparkles -->
+        <div class="absolute top-1/5 left-1/10 w-3 h-3 bg-yellow-400 rounded-full animate-sparkle"></div>
+        <div class="absolute top-1/3 right-1/6 w-3 h-3 bg-yellow-400 rounded-full animate-sparkle" style="animation-delay: 0.5s;"></div>
+        <div class="absolute bottom-1/4 left-1/5 w-3 h-3 bg-yellow-400 rounded-full animate-sparkle" style="animation-delay: 1s;"></div>
+        <div class="absolute bottom-1/3 right-1/4 w-3 h-3 bg-yellow-400 rounded-full animate-sparkle" style="animation-delay: 1.5s;"></div>
+    </section>
+
+
+    <!-- Photo Gallery -->
+    <section id="gallery" class="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 px-5 py-16 text-center">
+        <h2 class="text-5xl text-pink-custom font-bold mb-12 drop-shadow-md">Our Beautiful Memories 📸</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            <div class="bg-white rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-3 hover:scale-105">
+                <!-- GIF Placeholder for Childhood -->
+                <img src="Photo2.jpg" 
+            alt="Celebration GIF" 
+            class="w-70 h-48 rounded-2xl mx-auto mb-6 object-cover">
+            
+                <h3 class="text-xl font-bold text-purple-600 mb-2">Childhood Adventures</h3>
+                <p class="text-gray-600 leading-relaxed">Remember when we used to play on the Marina beach together? Those were the best days in Chennai!</p>
+            </div>
+            <div class="bg-white rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-3 hover:scale-105">
+                <!-- GIF Placeholder for Festivals -->
+                <img src="Photo3.jpg" 
+            alt="Celebration GIF" 
+            class="w-70 h-48 rounded-2xl mx-auto mb-6 object-cover">
+            
+                <h3 class="text-xl font-bold text-purple-600 mb-2">Festival Celebrations</h3>
+                <p class="text-gray-600 leading-relaxed">All those festivals we celebrated together every year and created a lots of good memories.</p>
+            </div>
+            <div class="bg-white rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-3 hover:scale-105">
+                <!-- GIF Placeholder for Trips -->
+                <img src="Photo4.jpg" 
+                alt="Celebration GIF" 
+                class="w-70 h-48 rounded-2xl mx-auto mb-6 object-cover">
+                <h3 class="text-xl font-bold text-purple-600 mb-2">Family Functions</h3>
+                <p class="text-gray-600 leading-relaxed">All those functions and weddings in which we ate a lot and have fun!</p>
+            </div>
+            <div class="bg-white rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-3 hover:scale-105">
+                <!-- GIF Placeholder for Special Moments -->
+                <img src="Photo5.jpg" 
+                alt="Celebration GIF" 
+                class="w-70 h-48 rounded-2xl mx-auto mb-6 object-cover">
+                <h3 class="text-xl font-bold text-purple-600 mb-2">Special Moments</h3>
+                <p class="text-gray-600 leading-relaxed">The most special Moments were our childhood times from lucknow to chennai to allahabad!! </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Personal Message -->
+    <section id="message" class="min-h-screen bg-gradient-to-br from-purple-light via-pink-light to-rose-100 px-5 py-16 text-center">
+        <h2 class="text-5xl text-pink-custom font-bold mb-12 drop-shadow-md">From My Heart to Yours 💕</h2>
+        <div class="max-w-4xl mx-auto bg-white rounded-3xl p-12 shadow-2xl backdrop-blur-sm">
+            <!-- GIF Placeholder for Heart/Love -->
+            <img src="Photo6.jpg" 
+            alt="Celebration GIF" 
+            class="w-70 h-48 rounded-2xl mx-auto mb-6 object-cover">
+            
+            <div class="prose prose-lg max-w-none">
+                <p class="text-xl leading-relaxed text-gray-700 mb-6 font-medium">Dear Didi,</p>
+                <p class="text-lg leading-relaxed text-gray-600 mb-6">On this special day, I want you to know how grateful I am to have you as my sister. You've been my guide, my protector, and my best friend all rolled into one. Main rote hue aata tha project banwane everytime or aapne har baar banaya h bhale hi badle me kuch bhi bola ho😂😁</p>
+                <p class="text-lg leading-relaxed text-gray-600 mb-6">Your kindness lights up every room you enter, and your wisdom has helped me through countless challenges. You've taught me what it means to be strong, compassionate, and loving.</p>
+                <p class="text-lg leading-relaxed text-gray-600 mb-6">Thank you for all the late-night conversations,those important maggie sessions(In which I made maggies 😏😒) watching reaction videos or Sherlock, the shared laughter, the comfort during tough times, and for always believing in me when I couldn't believe in myself.</p>
+                <div class="bg-gradient-to-r from-pink-500 to-purple-600 text-white p-6 rounded-2xl mb-6 shadow-lg">
+                    <p class="text-lg font-semibold">I hope this new year of your life brings you endless joy, success, and all the happiness you deserve. You are truly one of a kind, and I'm so proud to call you my sister.</p>
+                </div>
+                <p class="text-xl leading-relaxed text-pink-custom mb-6 font-bold">Happy Birthday, Didi! Here's to another year of being absolutely amazing! 🎂✨</p>
+                <p class="text-lg leading-relaxed text-gray-700 font-medium">With all my love,<br>Your Gaurav Tiwari😁</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fun Facts -->
+    <section id="facts" class="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 px-5 py-16 text-center">
+        <h2 class="text-5xl text-pink-custom font-bold mb-12 drop-shadow-md">Why You're Amazing! ⭐</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+            <div class="bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-110 border-t-4 border-purple-500">
+                <div class="text-5xl mb-4 animate-float">👑</div>
+                <h3 class="text-2xl text-pink-custom font-bold mb-3">Natural Leader</h3>
+                <p class="text-gray-600 leading-relaxed">You've always been the one everyone looks up to, making the tough decisions with grace and wisdom especially for me.</p>
+            </div>
+            <div class="bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-110 border-t-4 border-pink-500">
+                <div class="text-5xl mb-4 animate-float" style="animation-delay: 0.5s;">💝</div>
+                <h3 class="text-2xl text-pink-custom font-bold mb-3">Caring Heart</h3>
+                <p class="text-gray-600 leading-relaxed">Your compassion knows no bounds. You're always there for family and friends when they need you most.</p>
+            </div>
+            <div class="bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-110 border-t-4 border-yellow-500">
+                <div class="text-5xl mb-4 animate-float" style="animation-delay: 1s;">🌟</div>
+                <h3 class="text-2xl text-pink-custom font-bold mb-3">Inspiring Spirit</h3>
+                <p class="text-gray-600 leading-relaxed">You motivate everyone around you to be their best selves. Your positivity is contagious!</p>
+            </div>
+            <div class="bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-110 border-t-4 border-green-500">
+                <div class="text-5xl mb-4 animate-float" style="animation-delay: 1.5s;">🎨</div>
+                <h3 class="text-2xl text-pink-custom font-bold mb-3">Creative Soul</h3>
+                <p class="text-gray-600 leading-relaxed">Whether it's [add her hobbies], your creativity never fails to amaze and inspire us all.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Memory Lane -->
+    <section id="memories" class="min-h-screen bg-gradient-to-br from-pink-light via-purple-light to-blue-50 px-5 py-16 text-center">
+        <h2 class="text-5xl text-pink-custom font-bold mb-12 drop-shadow-md">Down Memory Lane 🛤️</h2>
+        <div class="max-w-4xl mx-auto space-y-8">
+            <div class="bg-white rounded-2xl p-8 shadow-xl relative border-l-8 border-pink-500">
+                <div class="absolute -left-6 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-pink-500 rounded-full flex items-center justify-center text-white text-xl animate-float">💕</div>
+                <h3 class="text-2xl text-pink-custom font-bold mb-4">Early Childhood (Ages 3-7)</h3>
+                <p class="text-gray-600 leading-relaxed text-lg">Those precious early years when you were my partner in mischief and my protector from mom's scolding. Remember how we used to share ice cream and build pillow forts?</p>
+            </div>
+            <div class="bg-white rounded-2xl p-8 shadow-xl relative border-l-8 border-purple-500">
+                <div class="absolute -left-6 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center text-white text-xl animate-float" style="animation-delay: 0.5s;">📚</div>
+                <h3 class="text-2xl text-pink-custom font-bold mb-4">School Days (Ages 8-15)</h3>
+                <p class="text-gray-600 leading-relaxed text-lg">You helped me with homework, walked me to school, and made sure I never felt alone. Your school friends became my role models too!</p>
+            </div>
+            <div class="bg-white rounded-2xl p-8 shadow-xl relative border-l-8 border-blue-500">
+                <div class="absolute -left-6 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white text-xl animate-float" style="animation-delay: 1s;">🌟</div>
+                <h3 class="text-2xl text-pink-custom font-bold mb-4">Teenage Years (Ages 16-20)</h3>
+                <p class="text-gray-600 leading-relaxed text-lg">Through all the drama and confusion of growing up, you were my anchor. Thank you for listening to my problems and giving the best advice.</p>
+            </div>
+            <div class="bg-white rounded-2xl p-8 shadow-xl relative border-l-8 border-green-500">
+                <div class="absolute -left-6 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white text-xl animate-float" style="animation-delay: 1.5s;">🏆</div>
+                <h3 class="text-2xl text-pink-custom font-bold mb-4">Recent Years</h3>
+                <p class="text-gray-600 leading-relaxed text-lg">Watching you achieve your dreams and become the incredible person you are today has been the greatest joy. I'm so proud of everything you've accomplished!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Virtual Birthday Card -->
+    <section id="card" class="py-16 bg-gradient-to-br from-purple-light via-pink-light to-rose-100 px-5 text-center">
+    <h2 class="text-5xl text-pink-custom font-bold mb-8 drop-shadow-md">Your Virtual Birthday Card 🎁</h2>
+    
+    <div class="card-flip max-w-md mx-auto" style="height: 250px;"> <!-- Reduced height -->
+        <!-- Front of Card -->
+        <div class="card-face card-front">
+            <div class="card-content">
+                <h3 class="card-title animate-bounce-custom text-2xl">🎉 Happy Birthday! 🎉</h3>
+                <p class="text-lg">Hover to open your card</p>
+            </div>
+        </div>
+        
+        <!-- Back of Card -->
+        <div class="card-face card-back">
+            <div class="card-content">
+                <h3 class="card-title text-xl">Wishing You...</h3>
+                <div class="space-y-2 text-base">
+                    <p class="flex items-center justify-center"><span class="mr-2">🌟</span> Joy that never fades</p>
+                    <p class="flex items-center justify-center"><span class="mr-2">💕</span> Love that multiplies</p>
+                    <p class="flex items-center justify-center"><span class="mr-2">🎯</span> Dreams that come true</p>
+                    <p class="flex items-center justify-center"><span class="mr-2">🌈</span> Adventures that inspire</p>
+                    <p class="flex items-center justify-center"><span class="mr-2">✨</span> A year full of magic</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Dark Magic Section (Hidden Initially) -->
+       <div id="darkMagicPage">
+        <!-- Rain Effect -->
+        <div class="rain" id="rainContainer"></div>
+        
+        <div class="container mx-auto px-4 py-8 dark-magic-content">
+            <!-- Main Title -->
+            <div class="text-center mb-12">
+                <h1 class="hp-title text-6xl md:text-8xl font-bold text-amber-400 mb-4 glow-text">
+                    🎂 HAPPY BIRTHDAY DIDI 🎃
+                </h1>
+                <p class="hp-dark text-3xl md:text-4xl text-orange-300 mb-8 glow-text">
+                    Where Shadows Dance and Magic Awakens...
+                </p>
+            </div>
+
+
+            <!-- Quote Section -->
+            <div class="parchment rounded-lg p-8 mb-12 shadow-2xl">
+                <div class="text-center">
+                    <p class="text-2xl md:text-3xl italic text-amber-200 mb-4 hp-dark" id="magicalQuote">
+                        "In the darkest of times, birthday candles provide the only light we need... <br>
+                        Tonight, we celebrate in the shadows! 🕯️"
+                    </p>
+                    <p class="text-lg text-amber-400 hp-spooky">- Albus Dumbledore (After Hours Edition)</p>
+                </div>
+            </div>
+
+            <!-- House Selection -->
+            <div class="text-center mb-12">
+                <h2 class="hp-title text-4xl md:text-5xl font-bold text-amber-400 mb-8 glow-text">
+                    Choose Your Dark House & Embrace the Night!
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Gryffindor -->
+                    <div class="house-card house-glow gryffindor rounded-lg p-6 cursor-pointer transform transition-all" onclick="selectHouse('gryffindor')">
+                        <div class="text-center">
+                            <div class="text-6xl mb-4">🦁</div>
+                            <h3 class="hp-title text-2xl font-bold text-red-300 mb-2">GRYFFINDOR</h3>
+                            <p class="text-sm text-amber-200">Brave in Darkness • Fearless • Noble</p>
+                        </div>
+                    </div>
+
+                    <!-- Hufflepuff -->
+                    <div class="house-card house-glow hufflepuff rounded-lg p-6 cursor-pointer transform transition-all" onclick="selectHouse('hufflepuff')">
+                        <div class="text-center">
+                            <div class="text-6xl mb-4">🦡</div>
+                            <h3 class="hp-title text-2xl font-bold text-yellow-300 mb-2">HUFFLEPUFF</h3>
+                            <p class="text-sm text-amber-200">Loyal to the End • Patient • Steadfast</p>
+                        </div>
+                    </div>
+
+                    <!-- Ravenclaw -->
+                    <div class="house-card house-glow ravenclaw rounded-lg p-6 cursor-pointer transform transition-all" onclick="selectHouse('ravenclaw')">
+                        <div class="text-center">
+                            <div class="text-6xl mb-4">🦅</div>
+                            <h3 class="hp-title text-2xl font-bold text-blue-300 mb-2">RAVENCLAW</h3>
+                            <p class="text-sm text-amber-200">Wise Beyond Years • Mysterious • Clever</p>
+                        </div>
+                    </div>
+
+                    <!-- Slytherin -->
+                    <div class="house-card house-glow slytherin rounded-lg p-6 cursor-pointer transform transition-all" onclick="selectHouse('slytherin')">
+                        <div class="text-center">
+                            <div class="text-6xl mb-4">🐍</div>
+                            <h3 class="hp-title text-2xl font-bold text-green-300 mb-2">SLYTHERIN</h3>
+                            <p class="text-sm text-amber-200">Cunning • Ambitious • Powerful</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Celebration Section (Hidden Initially) -->
+            <div id="celebrationSection" class="hidden">
+                <div class="text-center mb-12">
+                    <h2 class="hp-title text-5xl md:text-6xl font-bold text-amber-400 mb-6 glow-text">
+                        🌟 THE SORTING HAT HAS SPOKEN! 🌟
+                    </h2>
+                    <p class="text-2xl md:text-3xl text-orange-300 mb-8 hp-dark" id="houseMessage">
+                        You've been sorted into the shadows!
+                    </p>
+                    <div class="text-8xl mb-8" id="houseIcon">🏰</div>
+                </div>
+            </div>
+
+            <!-- Dark Birthday Spell -->
+            <div class="text-center mb-12">
+                <div class="dark-card rounded-lg p-8 shadow-2xl">
+                    <h2 class="hp-title text-4xl font-bold text-amber-400 mb-6 glow-text">
+                        🪄 Cast Your Dark Birthday Spell! 🪄
+                    </h2>
+                    <button onclick="castSpell()" class="bg-amber-600 hover:bg-amber-700 text-black font-bold py-4 px-8 rounded-full text-xl transition-all transform hover:scale-105 hp-dark shadow-lg">
+                        ✨ EXPECTO BIRTHDAYUM NOCTURNALIS! ✨
+                    </button>
+                    <div id="spellResult" class="mt-6 text-2xl text-amber-300 hidden">
+                        🌟 DARK SPELL CAST SUCCESSFULLY! 🌟<br>
+                        <span class="text-lg hp-dark">Your midnight birthday magic is now active!</span>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="closeDarkMagic()" class="bg-gradient-to-r from-pink-600 to-purple-700 text-white px-8 py-4 rounded-full text-xl font-bold hover:scale-105 transition-transform duration-300 shadow-2xl mt-8">
+                Return to Light ☀️
+            </button>
+        </div>
+    </div>
+
+    <!-- Music Player -->
+    <div class="fixed bottom-5 right-5 bg-white rounded-full p-4 shadow-2xl z-50">
+        <button class="music-btn bg-gradient-to-r from-pink-custom to-purple-custom text-white border-none rounded-full w-14 h-14 text-2xl cursor-pointer transition-transform duration-300 hover:scale-110 flex items-center justify-center" onclick="toggleMusic()">🎵</button>
+    </div>
+
+    <script>
+        function createConfettiStrips() {
+            const colors = ['bg-pink-300', 'bg-purple-300', 'bg-yellow-300', 'bg-blue-300', 'bg-green-300', 'bg-red-300'];
+            const heroSection = document.getElementById('hero');
+            
+            for (let i = 0; i < 20; i++) {
+                const strip = document.createElement('div');
+                strip.className = `confetti-strip ${colors[Math.floor(Math.random() * colors.length)]}`;
+                strip.style.left = `${Math.random() * 100}%`;
+                strip.style.animationDuration = `${5 + Math.random() * 10}s`;
+                strip.style.animationDelay = `${Math.random() * 3}s`;
+                strip.style.transform = `rotate(${Math.random() * 360}deg)`;
+                heroSection.appendChild(strip);
+            }
+        }
+        
+        // Call the function when page loads
+        window.addEventListener('load', createConfettiStrips);
+        // Auto-play music when page loads
+        window.addEventListener('load', function() {
+            const audio = document.getElementById('backgroundMusic');
+            // Try to play music, but handle browser restrictions
+            audio.play().catch(function(error) {
+                console.log('Auto-play was prevented. User interaction required.');
+                // Show a message or button to enable music
+                document.querySelector('.music-btn').style.backgroundColor = '#ff6b6b';
+                document.querySelector('.music-btn').textContent = '🔇';
+            });
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Music toggle functionality
+        function toggleMusic() {
+            const audio = document.getElementById('backgroundMusic');
+            const musicBtn = document.querySelector('.music-btn');
+            
+            if (audio.paused) {
+                audio.play();
+                musicBtn.style.background = 'linear-gradient(to right, #d4639a, #8b5a7c)';
+                musicBtn.textContent = '🎵';
+            } else {
+                audio.pause();
+                musicBtn.style.background = '#ff6b6b';
+                musicBtn.textContent = '🔇';
+            }
+        }
+
+        // Dark Magic functionality
+        function showDarkMagic() {
+            const darkMagicPage = document.getElementById('darkMagicPage');
+            darkMagicPage.style.display = 'block';
+            createRain();
+            
+            // Scroll to top when opening
+            darkMagicPage.scrollTo(0, 0);
+            
+            // Add random lightning flashes
+            setInterval(() => {
+                if (Math.random() > 0.85) {
+                    darkMagicPage.classList.add('thunder-flash');
+                    setTimeout(() => {
+                        darkMagicPage.classList.remove('thunder-flash');
+                    }, 150);
+                }
+            }, 8000);
+        }
+
+        function closeDarkMagic() {
+            document.getElementById('darkMagicPage').style.display = 'none';
+        }
+
+        // Rain effect
+        function createRain() {
+            const rainContainer = document.getElementById('rainContainer');
+            rainContainer.innerHTML = ''; // Clear existing drops
+            const numberOfDrops = 50;
+            
+            for (let i = 0; i < numberOfDrops; i++) {
+                const drop = document.createElement('div');
+                drop.classList.add('rain-drop');
+                drop.style.left = Math.random() * 100 + '%';
+                drop.style.animationDuration = (Math.random() * 2 + 1) + 's';
+                drop.style.animationDelay = Math.random() * 2 + 's';
+                rainContainer.appendChild(drop);
+            }
+        }
+        
+        function selectHouse(house) {
+            const celebrationSection = document.getElementById('celebrationSection');
+            const houseMessage = document.getElementById('houseMessage');
+            const houseIcon = document.getElementById('houseIcon');
+            
+            let message = '';
+            let icon = '';
+            
+            switch(house) {
+                case 'gryffindor':
+                    message = "🦁 Welcome to the DARK SIDE of GRYFFINDOR! 🦁<br>Your courage burns bright in the shadows!";
+                    icon = "🦁";
+                    break;
+                case 'hufflepuff':
+                    message = "🦡 Welcome to the MYSTERIOUS HUFFLEPUFF! 🦡<br>Your loyalty transcends the darkness!";
+                    icon = "🦡";
+                    break;
+                case 'ravenclaw':
+                    message = "🦅 Welcome to the ENIGMATIC RAVENCLAW! 🦅<br>Your wisdom illuminates the night!";
+                    icon = "🦅";
+                    break;
+                case 'slytherin':
+                    message = "🐍 Welcome to the SHADOWY SLYTHERIN! 🐍<br>Your cunning rules the darkness!";
+                    icon = "🐍";
+                    break;
+            }
+            
+            houseMessage.innerHTML = message;
+            houseIcon.textContent = icon;
+            celebrationSection.classList.remove('hidden');
+            
+            // Thunder effect
+            document.getElementById('darkMagicPage').classList.add('thunder-flash');
+            setTimeout(() => {
+                document.getElementById('darkMagicPage').classList.remove('thunder-flash');
+            }, 200);
+            
+            // Scroll to celebration
+            celebrationSection.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function castSpell() {
+            const spellResult = document.getElementById('spellResult');
+            
+            spellResult.classList.remove('hidden');
+            
+            // Thunder effect
+            document.getElementById('darkMagicPage').classList.add('thunder-flash');
+            setTimeout(() => {
+                document.getElementById('darkMagicPage').classList.remove('thunder-flash');
+            }, 200);
+            
+            // Magical button effects
+            const button = event.target;
+            button.style.transform = 'scale(1.3) rotate(5deg)';
+            button.style.background = 'linear-gradient(45deg, #8B4513, #D2691E, #A0522D)';
+            button.style.boxShadow = '0 0 30px rgba(139, 69, 19, 0.8)';
+            
+            setTimeout(() => {
+                button.style.transform = 'scale(1)';
+                button.style.background = '';
+                button.style.boxShadow = '';
+            }, 400);
+        }
+
+        // Add confetti effect when clicking on certain elements
+        function createConfetti() {
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('animate-confetti');
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                confetti.style.animationDelay = Math.random() * 5 + 's';
+                confetti.style.opacity = Math.random();
+                
+                // Random confetti shapes and colors
+                const shapes = ['🎉', '🎊', '✨', '🎈', '🎁', '💖', '🌟'];
+                const randomShape = shapes[Math.floor(Math.random() * shapes.length)];
+                confetti.textContent = randomShape;
+                confetti.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                
+                document.body.appendChild(confetti);
+                
+                // Remove confetti after animation completes
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+        }
+
+        // Add confetti to click events on celebratory elements
+        document.querySelectorAll('.animate-float, .card-flip, .music-btn').forEach(el => {
+            el.addEventListener('click', createConfetti);
+        });
+    </script>
+</body>
+</html>
